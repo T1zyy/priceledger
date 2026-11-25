@@ -1,0 +1,8 @@
+syntax = "proto3";
+package commerce.v1;
+option go_package = "github.com/T1zyy/priceledger/api;api";
+
+// Mutation APIs are HTTP. Other services can read typed snapshots via gRPC.
+service Pricing { rpc GetPrice(PriceQuery) returns (PriceSnapshot); }
+message PriceQuery { string sku = 1; }
+message PriceSnapshot { string sku = 1; string category = 2; int64 cost_kopecks = 3; int64 markup_bps = 4; int64 price_kopecks = 5; int64 version = 6; }
